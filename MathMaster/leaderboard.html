@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="css/leaderboard_styles.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+        color: #f6ebeb;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .leaderboard-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        box-shadow: 0 0 30px #00ffff55;
+        text-align: center;
+      }
+
+      .leaderboard-title {
+        font-size: 2.5rem;
+        color: #454949;
+        text-shadow: 0 0 10px #de2d0e;
+        margin-bottom: 30px;
+      }
+
+      .leaderboard-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px #ff00ff33;
+        backdrop-filter: blur(5px);
+        color: #fff;
+      }
+
+      .leaderboard-item.highlighted {
+        background: rgba(0, 255, 255, 0.2);
+        border: 2px solid #00ffff;
+        box-shadow: 0 0 20px #00ffffcc;
+        color: #e5e1e1;
+      }
+
+      .leaderboard-item img.avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+        object-fit: cover;
+        border: 2px solid #ff00ff;
+        box-shadow: 0 0 5px #ff00ffaa;
+      }
+
+      .leaderboard-item span {
+        margin: 0 8px;
+        font-size: 1rem;
+      }
+
+      .btn {
+        margin-top: 30px;
+        padding: 12px 25px;
+        background: #ff00ff;
+        color: #000;
+        font-weight: bold;
+        font-size: 1rem;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 0 10px #ff00ff;
+      }
+
+      .btn:hover {
+        background: #00ffff;
+        color: #000;
+        box-shadow: 0 0 15px #00ffff;
+      }
+
+      .rank {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #ff00ff;
+      }
+
+      .name {
+        flex-grow: 1;
+        text-align: left;
+        font-weight: bold;
+        color: #ffffff;
+      }
+
+      .score,
+      .level,
+      .percent {
+        font-size: 0.95rem;
+        color: #ddd;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      @media (max-width: 768px) {
+        .leaderboard-item {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .leaderboard-item span {
+          margin: 5px 0;
+        }
+
+        .leaderboard-item img.avatar {
+          margin-bottom: 10px;
+        }
+
+        .name {
+          text-align: center;
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="leaderboard-container">
+      <h2 class="leaderboard-title">🏆 Leaderboard</h2>
+      <ul id="leaderboard-list"></ul>
+      <button onclick="window.location.href='index.html'" class="btn">
+        ⬅ Back
+      </button>
+    </div>
+
+    <script>
+      fetch("php/leaderboard.php")
+        .then((res) => res.json())
+        .then((data) => {
+          const list = document.getElementById("leaderboard-list");
+          list.innerHTML = ""; // clear list
+
+          data.forEach((entry, i) => {
+            const avatarPath = `assets/${entry.avatar}`;
+
+            list.innerHTML += `
+            <li class="leaderboard-item ${
+              entry.current_user ? "highlighted" : ""
+            }">
+              <span class="rank">#${i + 1}</span>
+              <img src="${avatarPath}" class="avatar" alt="avatar" />
+              <span class="name">${entry.name}</span>
+              <span class="score">Score: ${entry.score}</span>
+              <span class="level">Level: ${entry.level}</span>
+              <span class="percent">(${entry.percentage}%)</span>
+            </li>`;
+          });
+        })
+        .catch((err) => {
+          console.error("Failed to fetch leaderboard:", err);
+          document.getElementById("leaderboard-list").innerHTML =
+            "<li>Failed to load leaderboard data.</li>";
+        });
+    </script>
+  </body>
+</html>

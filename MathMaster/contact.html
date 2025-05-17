@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - MathMaster</title>
+    <link rel="stylesheet" href="css/contact_neon.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .home-btn {
+        margin-top: 20px;
+        background: #0ff;
+        color: #000;
+        padding: 10px 20px;
+        border: none;
+        font-size: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 0 10px #0ff;
+        transition: 0.3s ease;
+      }
+      .home-btn:hover {
+        background: #00ffffa6;
+        box-shadow: 0 0 20px #0ff;
+      }
+    </style>
+  </head>
+  <body class="contact-body">
+    <div class="contact-container">
+      <h2 class="contact-title">Get in Touch</h2>
+      <p class="contact-subtitle">
+        We'd love to hear from you. Please fill out the form below.
+      </p>
+
+      <!-- Contact Form -->
+      <form
+        class="contact-form"
+        action="php/contact.php"
+        method="POST"
+        onsubmit="return showSuccessPopup()"
+      >
+        <input type="text" name="name" placeholder="👤 Your Name" required />
+        <input type="email" name="email" placeholder="📧 Your Email" required />
+        <input type="text" name="subject" placeholder="✉️ Subject" required />
+        <textarea
+          name="message"
+          placeholder="📝 Your Message"
+          required
+        ></textarea>
+        <button type="submit" class="send-btn">Send Message</button>
+      </form>
+
+      <!-- Back to Home Button -->
+      <button class="home-btn" onclick="window.location.href='index.html'">
+        ⬅ Back to Home
+      </button>
+    </div>
+
+    <!-- Success Pop-up Logic -->
+    <script>
+      function showSuccessPopup() {
+        alert("✅ Your message has been sent successfully!");
+        return true; // allow form submission
+      }
+    </script>
+  </body>
+</html>

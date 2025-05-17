@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Level - Rapid Math</title>
+    <link rel="stylesheet" href="css/play_styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Select a Level</h1>
+    <div class="level-grid" id="levelGrid"></div>
+
+    <button onclick="window.location.href='game.html'" class="back-btn">
+      ⬅️ Back to Game
+    </button>
+
+    <script>
+      const totalLevels = 30;
+
+      async function fetchUnlockedLevels() {
+        try {
+          const response = await fetch("php/get-unlocked-levels.php");
+          if (!response.ok) throw new Error("Failed to load levels");
+          return await response.json();
+        } catch (err) {
+          console.error(err);
+          return [1];
+        }
+      }
+
+      async function renderLevels() {
+        const unlockedLevels = await fetchUnlockedLevels();
+        const grid = document.getElementById("levelGrid");
+        grid.innerHTML = "";
+
+        for (let i = 1; i <= totalLevels; i++) {
+          const btn = document.createElement("div");
+          btn.classList.add("level");
+          btn.textContent = "Level " + i;
+
+          if (!unlockedLevels.includes(i)) {
+            btn.classList.add("locked");
+          } else {
+            btn.addEventListener("click", () => {
+              window.location.href = `level.html?level=${i}`;
+            });
+          }
+
+          grid.appendChild(btn);
+        }
+      }
+
+      renderLevels();
+    </script>
+  </body>
+</html>

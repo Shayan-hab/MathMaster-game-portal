@@ -1,0 +1,69 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(circle at center, #0f0f2d 80%, #000000 50%);
+  font-family: "Orbitron", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap");
+
+.menu-container {
+  text-align: center;
+  padding: 40px;
+  background: rgba(20, 20, 50, 0.85);
+  border: 2px solid #ff00ff;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #ff00ff, 0 0 50px #00ffff inset;
+  max-width: 400px;
+  width: 90%;
+}
+
+.game-title {
+  font-size: 2.8em;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
+  margin-bottom: 2em;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.arcade-btn {
+  font-size: 1.2em;
+  padding: 14px 30px;
+  border: 2px solid #ff00ff;
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 15px #ff00ff;
+}
+
+.arcade-btn:hover {
+  background: #ff00ff;
+  color: #000;
+  box-shadow: 0 0 25px #ff00ff, 0 0 40px #00ffff;
+}
+
+@media (max-width: 600px) {
+  .game-title {
+    font-size: 2em;
+  }
+
+  .arcade-btn {
+    font-size: 1em;
+    padding: 12px 20px;
+  }
+}

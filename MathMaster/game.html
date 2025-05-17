@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rapid Math - Menu</title>
+    <link rel="stylesheet" href="css/game_styles.css" />
+  </head>
+  <body class="game-body">
+    <div class="menu-container">
+      <h1 class="game-title">Math Master</h1>
+      <div class="menu-buttons">
+        <button class="arcade-btn" onclick="location.href='play.html'">
+          Start Game
+        </button>
+        <button class="arcade-btn" onclick="location.href='help.html'">
+          Help
+        </button>
+        <button class="arcade-btn" onclick="location.href='leaderboard.html'">
+          High Scores
+        </button>
+
+        <button class="arcade-btn" onclick="location.href='index.html'">
+          ⬅ Back to Home
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document
+        .querySelector("#leaderboardBtn")
+        .addEventListener("click", () => {
+          fetch("check-login.php")
+            .then((res) => res.text())
+            .then((isLoggedIn) => {
+              if (isLoggedIn === "yes") {
+                window.location.href = "leaderboard.html";
+              } else {
+                window.location.href = "login.html";
+              }
+            });
+        });
+    </script>
+  </body>
+</html>

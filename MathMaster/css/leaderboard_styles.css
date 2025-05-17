@@ -1,0 +1,118 @@
+  /* Leaderboard Page */
+/* Leaderboard Page - Neon Style */
+.leaderboard-body {
+  margin: 0;
+  padding: 0;
+  background: #0c0c0c;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.leaderboard-container {
+  width: 90%;
+  max-width: 400px;
+  background: #1a1a1a;
+  border-radius: 25px;
+  box-shadow: 0 0 20px #00ffff88;
+  overflow: hidden;
+  padding-bottom: 1rem;
+  color: #dad4d4;
+}
+
+.leaderboard-title {
+  background: linear-gradient(to right, #00bfff, #00ffea);
+  color: black;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 1.8rem;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  box-shadow: 0 0 10px #00ffffaa;
+}
+
+.leaderboard-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #333;
+  font-weight: bold;
+  background: #2c2c2c;
+  transition: background 0.3s;
+}
+
+.leaderboard-item:nth-child(even) {
+  background: #1f1f1f;
+}
+
+.leaderboard-item.highlighted {
+  background: #000;
+  border: 2px solid #00ffea;
+  color: #00ffea;
+  box-shadow: 0 0 20px #00ffea;
+}
+
+.leaderboard-item.highlighted .name {
+  font-weight: 800;
+  text-decoration: underline;
+}
+
+.rank {
+  width: 25px;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #00ffea;
+}
+
+.name {
+  flex-grow: 1;
+}
+
+.trophy img {
+  width: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.leaderboard-buttons {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1rem;
+}
+
+.btn {
+  background: #00bfff;
+  border: none;
+  color: rgb(217, 196, 35);
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 3px #008ecc;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  background: #0099cc;
+  transform: scale(1.05);
+}
+
+.back-btn {
+  background: #333;
+}
+  

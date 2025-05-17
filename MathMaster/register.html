@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register - Math Master</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body.auth-body {
+        margin: 0;
+        padding: 0;
+        font-family: "Orbitron", sans-serif;
+        background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      .form-box {
+        background: rgba(0, 0, 0, 0.7);
+        border: 2px solid #00fff0;
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 0 30px #00fff0;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .form-box h2 {
+        margin-bottom: 25px;
+        font-size: 28px;
+        color: #00ffe7;
+        text-shadow: 0 0 10px #00ffe7;
+      }
+
+      .form-box input[type="text"],
+      .form-box input[type="email"],
+      .form-box input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin: 12px 0;
+        border: none;
+        border-radius: 8px;
+        background: #1f1f1f;
+        color: #fff;
+        font-size: 16px;
+        box-shadow: 0 0 10px #00ffe7;
+        outline: none;
+      }
+
+      .form-box input::placeholder {
+        color: #ccc;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 8px;
+        background: #00ffe7;
+        color: #000;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 15px #00ffe7;
+      }
+
+      .btn:hover {
+        background: #00ffe7;
+        box-shadow: 0 0 35px #ff00ff;
+      }
+
+      p {
+        margin-top: 15px;
+        color: #ccc;
+      }
+
+      p a {
+        color: #00ffe7;
+        text-decoration: none;
+      }
+
+      p a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body class="auth-body">
+    <div class="form-box">
+      <h2>Register Now</h2>
+      <form action="php/register.php" method="POST">
+        <input type="text" name="username" placeholder="👤 Username" required />
+        <input type="email" name="email" placeholder="📧 Email" required />
+        <input
+          type="password"
+          name="password"
+          placeholder="🔒 Password"
+          required
+        />
+        <button type="submit" class="btn">Register</button>
+        <p>Already have an account? <a href="login.html">Login Now</a></p>
+      </form>
+    </div>
+  </body>
+</html>

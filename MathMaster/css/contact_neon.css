@@ -1,0 +1,125 @@
+body.contact-body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at center, #0f0f0f 0%, #000000 100%);
+    color: #00ffe7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  
+  .contact-container {
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #00ffe7;
+    box-shadow: 0 0 20px #00ffe7, 0 0 40px #00ffe7 inset;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    animation: pulse-glow 2s infinite ease-in-out;
+  }
+  
+  .contact-title {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #00ffe7;
+    text-shadow: 0 0 10px #00ffe7;
+  }
+  
+  .contact-subtitle {
+    font-size: 1em;
+    color: #cccccc;
+    margin-bottom: 30px;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    background: transparent;
+    border: 2px solid #00ffe7;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1em;
+    box-shadow: 0 0 10px #00ffe7 inset;
+    transition: 0.3s;
+  }
+  
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: #aaa;
+  }
+  
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 15px #ff00ff, 0 0 20px #ff00ff inset;
+  }
+  
+  .contact-form textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+  
+  .send-btn {
+    background: #00ffe7;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 15px 30px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7 inset;
+    transition: 0.3s;
+  }
+  
+  .send-btn:hover {
+    background: #ff00ff;
+    color: #fff;
+    box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff inset;
+  }
+
+
+  .home-btn {
+    background: #00ffe7;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 15px 30px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7 inset;
+    transition: 0.3s;
+  }
+
+
+  .home-btn:hover {
+    background:#ff00ff ;
+    color: #fff;
+    box-shadow: 0 0 15px #ff00ff, 0 0 25px #ff00ff inset;
+  }
+
+
+  
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 0 0 20px #00ffe7, 0 0 40px #ff00ff inset;
+    }
+    50% {
+      box-shadow: 0 0 30px #00ffee, 0 0 60px #ff00ff inset;
+    }
+    100% {
+      box-shadow: 0 0 20px #00ffe7, 0 0 40px #ff00ff inset;
+    }
+  }
+  

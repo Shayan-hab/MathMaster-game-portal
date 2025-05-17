@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Play Level</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
+
+      body {
+        font-family: "Orbitron", sans-serif;
+        background: radial-gradient(
+          ellipse at center,
+          #0f0f0f 0%,
+          #000000 100%
+        );
+        padding: 20px;
+        text-align: center;
+        color: #0ff;
+      }
+
+      .question-box {
+        background: rgba(0, 0, 0, 0.7);
+        border: 2px solid #0ff;
+        border-radius: 15px;
+        padding: 2rem;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 0 25px #0ff;
+        transition: transform 0.3s;
+      }
+
+      .question-box:hover {
+        transform: scale(1.01);
+        box-shadow: 0 0 40px #0ff;
+      }
+
+      .question {
+        font-size: 2rem;
+        color: #fff;
+        margin-bottom: 1rem;
+        text-shadow: 0 0 10px #0ff;
+      }
+
+      input[type="number"] {
+        padding: 12px;
+        font-size: 1.2rem;
+        width: 150px;
+        border: none;
+        border-radius: 10px;
+        outline: none;
+        background: #111;
+        color: #0ff;
+        box-shadow: 0 0 10px #0ff inset;
+        text-align: center;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        background: transparent;
+        border: 2px solid #0ff;
+        color: #0ff;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: 0.3s ease;
+      }
+
+      .btn:hover {
+        background: #0ff;
+        color: #000;
+        box-shadow: 0 0 15px #0ff;
+      }
+
+      .timer {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #ff4081;
+        text-shadow: 0 0 10px #ff4081;
+      }
+
+      .top-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 15px;
+        margin-bottom: 30px;
+      }
+
+      .secondary-btn {
+        background: transparent;
+        color: #ff4081;
+        border: 2px solid #ff4081;
+        padding: 10px 16px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: 0.3s ease;
+      }
+
+      .secondary-btn:hover {
+        background: #ff4081;
+        color: #000;
+        box-shadow: 0 0 15px #ff4081;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-buttons">
+      <button class="secondary-btn" onclick="leaveLevel()">Leave Level</button>
+      <button class="secondary-btn" onclick="skipQuestion()">
+        Skip Question
+      </button>
+    </div>
+
+    <div class="question-box">
+      <h2 id="levelTitle">Level</h2>
+      <div id="question" class="question"></div>
+      <div class="timer" id="timer">Time left: 20s</div>
+      <input type="number" id="answer" placeholder="Your Answer" />
+      <br />
+      <button class="btn" onclick="submitAnswer()">Submit</button>
+    </div>
+
+    <script>
+      const level =
+        new URLSearchParams(window.location.search).get("level") || 1;
+      document.getElementById("levelTitle").innerText = "Level " + level;
+
+      let current = 0;
+      let score = 0;
+      let questions = [];
+      let skipped = [];
+      let retryingSkipped = false;
+      let timer;
+      let timeLeft = 20;
+
+      function generateQuestion() {
+        const lvl = parseInt(level);
+
+        if (lvl <= 10) {
+          const ops = ["+", "-", "*", "/"];
+          const op = ops[Math.floor(Math.random() * ops.length)];
+          let a = Math.floor(Math.random() * 20) + 1;
+          let b = Math.floor(Math.random() * 20) + 1;
+          if (op === "/") a = a * b;
+          return {
+            text: `${a} ${op} ${b}`,
+            answer: Math.round(eval(`${a} ${op} ${b}`) * 100) / 100,
+          };
+        } else if (lvl <= 20) {
+          let a = Math.floor(Math.random() * 9) + 1;
+          let x = Math.floor(Math.random() * 10) + 1;
+          let b = Math.floor(Math.random() * 10);
+          let c = a * x + b;
+          return { text: `Solve: ${a}x + ${b} = ${c}`, answer: x };
+        } else {
+          const types = [
+            () => {
+              let angle1 = Math.floor(Math.random() * 90) + 30;
+              let angle2 = Math.floor(Math.random() * (180 - angle1 - 30)) + 30;
+              let angle3 = 180 - angle1 - angle2;
+              return {
+                text: `Find the missing angle: Triangle with angles ${angle1}°, ${angle2}°, and ?`,
+                answer: angle3,
+              };
+            },
+            () => {
+              let angle = Math.floor(Math.random() * 150) + 30;
+              return {
+                text: `Find the supplementary angle of ${angle}°`,
+                answer: 180 - angle,
+              };
+            },
+            () => {
+              let angle = Math.floor(Math.random() * 70) + 10;
+              return {
+                text: `Find the complementary angle of ${angle}°`,
+                answer: 90 - angle,
+              };
+            },
+          ];
+          return types[Math.floor(Math.random() * types.length)]();
+        }
+      }
+
+      function generateQuestions() {
+        for (let i = 0; i < 10; i++) questions.push(generateQuestion());
+      }
+
+      function showQuestion() {
+        if (!retryingSkipped && current >= questions.length) {
+          if (skipped.length > 0) {
+            questions = skipped;
+            skipped = [];
+            current = 0;
+            retryingSkipped = true;
+            alert("Now answering skipped questions!");
+          } else {
+            return finishQuiz();
+          }
+        } else if (retryingSkipped && current >= questions.length) {
+          return finishQuiz();
+        }
+
+        const q = questions[current];
+        document.getElementById("question").innerText = `Q${current + 1}: ${
+          q.text
+        }`;
+        document.getElementById("answer").value = "";
+        startTimer();
+      }
+
+      function submitAnswer() {
+        clearInterval(timer);
+        const userAns = parseFloat(document.getElementById("answer").value);
+        const correctAns = questions[current].answer;
+        if (!isNaN(userAns) && Math.abs(userAns - correctAns) < 0.01) score++;
+        current++;
+        showQuestion();
+      }
+
+      function skipQuestion() {
+        clearInterval(timer);
+        skipped.push(questions[current]);
+        current++;
+        showQuestion();
+      }
+
+      function leaveLevel() {
+        clearInterval(timer);
+        if (confirm("Are you sure you want to leave the level?")) {
+          window.location.href = "play.html";
+        } else {
+          startTimer();
+        }
+      }
+
+      function startTimer() {
+        timeLeft = 20;
+        document.getElementById("timer").innerText = `Time left: ${timeLeft}s`;
+        timer = setInterval(() => {
+          timeLeft--;
+          document.getElementById(
+            "timer"
+          ).innerText = `Time left: ${timeLeft}s`;
+          if (timeLeft === 0) {
+            clearInterval(timer);
+            submitAnswer();
+          }
+        }, 1000);
+      }
+
+      function finishQuiz() {
+        const percent = Math.round((score / (10 + skipped.length)) * 100);
+        alert(`You scored ${score}/${10 + skipped.length} (${percent}%)`);
+
+        if (percent >= 50 && parseInt(level) < 30) {
+          let unlocked = JSON.parse(localStorage.getItem("unlockedLevels")) || [
+            1,
+          ];
+          const next = parseInt(level) + 1;
+          if (!unlocked.includes(next)) {
+            unlocked.push(next);
+            localStorage.setItem("unlockedLevels", JSON.stringify(unlocked));
+          }
+          alert("Level Passed! Next level unlocked 🎉");
+        } else {
+          alert("Try again to unlock next level!");
+        }
+
+        window.location.href = "play.html";
+
+        fetch("php/save_score.php", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            level: level,
+            score: score,
+            percentage: percent,
+          }),
+        });
+      }
+
+      generateQuestions();
+      showQuestion();
+    </script>
+  </body>
+</html>

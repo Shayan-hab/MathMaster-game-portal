@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help - Math Game</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+        color: #ffffff;
+        font-family: "Orbitron", sans-serif;
+      }
+
+      .main-header {
+        background-color: #1a1a2e;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px solid #ff00ff;
+      }
+
+      .main-header h1 {
+        font-size: 2.5rem;
+        color: #00ffff;
+        text-shadow: 0 0 10px #00ffff;
+      }
+
+      .main-nav {
+        margin-top: 10px;
+      }
+
+      .main-nav a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+      }
+
+      .main-nav a:hover {
+        color: #ff00ff;
+        text-shadow: 0 0 5px #ff00ff;
+      }
+
+      .help-main {
+        padding: 40px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .help-card {
+        background: rgba(0, 0, 0, 0.4);
+        border: 2px solid #ff00ff;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px 0;
+        width: 90%;
+        max-width: 800px;
+        box-shadow: 0 0 20px #ff00ff55;
+      }
+
+      .help-card h2 {
+        color: #00ffff;
+        text-shadow: 0 0 8px #00ffff;
+        margin-bottom: 15px;
+      }
+
+      .help-card p,
+      .help-card ul {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #e0e0e0;
+      }
+
+      .help-card ul {
+        list-style-type: disc;
+        padding-left: 20px;
+      }
+
+      .help-card ul li::marker {
+        color: #ff00ff;
+      }
+
+      .back-btn {
+        margin-top: 40px;
+      }
+
+      .back-btn a {
+        background: #ff00ff;
+        color: #000;
+        text-decoration: none;
+        padding: 12px 25px;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: background 0.3s;
+        box-shadow: 0 0 10px #ff00ff;
+      }
+
+      .back-btn a:hover {
+        background: #00ffff;
+        color: #000;
+        box-shadow: 0 0 15px #00ffff;
+      }
+
+      .main-footer {
+        text-align: center;
+        padding: 20px;
+        background-color: #1a1a2e;
+        border-top: 2px solid #ff00ff;
+        font-size: 0.9rem;
+        color: #aaa;
+        margin-top: 40px;
+      }
+
+      @media (max-width: 600px) {
+        .main-header h1 {
+          font-size: 1.8rem;
+        }
+
+        .main-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .main-nav a {
+          font-size: 1rem;
+        }
+
+        .help-card {
+          padding: 20px;
+        }
+
+        .back-btn a {
+          width: 100%;
+          display: block;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body class="dark-body">
+    <header class="main-header">
+      <h1>📘 Game Help</h1>
+      <nav class="main-nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="game.html">🎮 Game</a>
+        <a href="leaderboard.html">🏆 Leaderboard</a>
+      </nav>
+    </header>
+
+    <main class="help-main">
+      <section class="help-card">
+        <h2>🎯 Game Goal</h2>
+        <p>
+          Play through math levels and unlock new challenges by solving
+          arithmetic questions. than Algebric questions and then Geomatric
+          Sharpen your brain and climb the leaderboard!
+        </p>
+      </section>
+
+      <section class="help-card">
+        <h2>🕹️ How to Play</h2>
+        <ul>
+          <li>Start from Level 1 — it's the only one unlocked initially.</li>
+          <li>Each level has <strong>10 math questions</strong>.</li>
+          <li>
+            Score <strong>6 or more</strong> correct answers to unlock the next
+            level.
+          </li>
+          <li>Score less than 6? You’ll be asked to try again.</li>
+        </ul>
+      </section>
+
+      <section class="help-card">
+        <h2>📈 Scoring</h2>
+        <p>✔️ Correct answer: +1 point<br />❌ Wrong answer: 0 points</p>
+      </section>
+
+      <section class="help-card">
+        <h2>🏅 Leaderboard</h2>
+        <p>
+          Your highest scores are saved and ranked! Compete with other players
+          and aim for the top spot.
+        </p>
+      </section>
+
+      <section class="help-card">
+        <h2>💡 Tips</h2>
+        <ul>
+          <li>Take your time — accuracy matters more than speed.</li>
+          <li>Practice mental math for faster responses.</li>
+          <li>Keep playing to improve and unlock more levels!</li>
+        </ul>
+      </section>
+
+      <div class="back-btn">
+        <a href="game.html">🔙 Back to Game</a>
+      </div>
+    </main>
+
+    <footer class="main-footer">
+      <p>&copy; 2025 Math Game. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
