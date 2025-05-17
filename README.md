@@ -1,6 +1,6 @@
 # 🎮 Math Game Portal
 
-This is a dynamic and interactive Math Game Portal developed as part of a university course project. It features user registration/login, admin management, password reset functionality, question generation, level unlocking, scoring, and a leaderboard. 
+This is a dynamic and interactive Math Game Portal developed as part of a university course project. It features user registration/login, admin management, password reset functionality, question generation, level unlocking, scoring, and a leaderboard.  
 
 ---
 
